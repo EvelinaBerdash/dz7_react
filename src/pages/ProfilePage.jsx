@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
 import { ThemeContext } from '../utils/ThemeContext'
 import { useSelector, useDispatch } from "react-redux"
-// import * as types from '../store/profile/types'
 import { changeName, toggleProfile } from '../store/profile/actions'
 import { selectName, selectVisible } from "../store/profile/selectors"
 
@@ -12,13 +11,8 @@ export function ProfilePage() {
     const [value, setValue] = useState('')
 
     const dispatch = useDispatch()
-
-    // console.log('theme ===>', theme)
-    // console.log('store', name)
-
     const handleChange = () => {
         console.log(value)
-        // dispatch({type: types.CHANGE_NAME, payload: value})
         dispatch(changeName(value))
         setValue('')
     }
@@ -32,13 +26,13 @@ export function ProfilePage() {
             <input type='checkbox' checked={visible} readOnly />
             <button onClick={() => dispatch(toggleProfile())}>change visible</button>
             <br />
-            <input 
+            <input
                 type="text"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
             />
             {/* <button onClick={handleChange}>Change name</button> */}
-             <button onClick={() => dispatch(changeName(value))}>Change name</button>
+            <button onClick={() => dispatch(changeName(value))}>Change name</button>
         </>
     )
 }
